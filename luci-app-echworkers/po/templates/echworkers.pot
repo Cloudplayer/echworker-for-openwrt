@@ -1,0 +1,110 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+msgid "ECH Workers"
+msgstr ""
+
+msgid "ECH (Encrypted Client Hello) Workers proxy client with smart routing support."
+msgstr ""
+
+msgid "Service Status"
+msgstr ""
+
+msgid "Running"
+msgstr ""
+
+msgid "Not Running"
+msgstr ""
+
+msgid "Basic Settings"
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Server Address"
+msgstr ""
+
+msgid "ECH Workers server address, e.g. your-worker.workers.dev:443"
+msgstr ""
+
+msgid "Listen Address"
+msgstr ""
+
+msgid "Local listen address and port"
+msgstr ""
+
+msgid "Routing Mode"
+msgstr ""
+
+msgid "Traffic routing mode"
+msgstr ""
+
+msgid "Global Proxy"
+msgstr ""
+
+msgid "Bypass China"
+msgstr ""
+
+msgid "Direct Connect"
+msgstr ""
+
+msgid "Advanced Settings"
+msgstr ""
+
+msgid "Token"
+msgstr ""
+
+msgid "Authentication token (optional)"
+msgstr ""
+
+msgid "Preferred IP"
+msgstr ""
+
+msgid "Preferred server IP to bypass DNS resolution"
+msgstr ""
+
+msgid "DoH Server"
+msgstr ""
+
+msgid "DNS over HTTPS server for ECH query"
+msgstr ""
+
+msgid "ECH Domain"
+msgstr ""
+
+msgid "ECH configuration domain"
+msgstr ""
+
+msgid "Service Logs"
+msgstr ""
+
+msgid "Refresh Logs"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
+
+msgid "Auto refresh (3s)"
+msgstr ""
+
+msgid "No logs available"
+msgstr ""
+
+msgid "Failed to read logs: "
+msgstr ""
+
+msgid "Transparent Proxy"
+msgstr ""
+
+msgid "Enable Transparent Proxy"
+msgstr ""
+
+msgid "Automatically redirect LAN traffic through proxy (requires redsocks)"
+msgstr ""
+
+msgid "Redirect Port"
+msgstr ""
+
+msgid "Local port for traffic redirection"
+msgstr ""

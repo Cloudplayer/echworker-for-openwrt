@@ -1,0 +1,113 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: luci-app-echworkers\n"
+"Language: zh_Hans\n"
+
+msgid "ECH Workers"
+msgstr "ECH Workers"
+
+msgid "ECH (Encrypted Client Hello) Workers proxy client with smart routing support."
+msgstr "ECH (加密客户端问候) Workers 代理客户端，支持智能分流。"
+
+msgid "Service Status"
+msgstr "服务状态"
+
+msgid "Running"
+msgstr "运行中"
+
+msgid "Not Running"
+msgstr "未运行"
+
+msgid "Basic Settings"
+msgstr "基本设置"
+
+msgid "Enable"
+msgstr "启用"
+
+msgid "Server Address"
+msgstr "服务器地址"
+
+msgid "ECH Workers server address, e.g. your-worker.workers.dev:443"
+msgstr "ECH Workers 服务器地址，例如 your-worker.workers.dev:443"
+
+msgid "Listen Address"
+msgstr "监听地址"
+
+msgid "Local listen address and port"
+msgstr "本地监听地址和端口"
+
+msgid "Routing Mode"
+msgstr "分流模式"
+
+msgid "Traffic routing mode"
+msgstr "流量分流模式"
+
+msgid "Global Proxy"
+msgstr "全局代理"
+
+msgid "Bypass China"
+msgstr "跳过中国大陆"
+
+msgid "Direct Connect"
+msgstr "直连模式"
+
+msgid "Advanced Settings"
+msgstr "高级设置"
+
+msgid "Token"
+msgstr "令牌"
+
+msgid "Authentication token (optional)"
+msgstr "身份验证令牌（可选）"
+
+msgid "Preferred IP"
+msgstr "优选 IP"
+
+msgid "Preferred server IP to bypass DNS resolution"
+msgstr "优选服务器 IP，绕过 DNS 解析"
+
+msgid "DoH Server"
+msgstr "DoH 服务器"
+
+msgid "DNS over HTTPS server for ECH query"
+msgstr "用于 ECH 查询的 DNS over HTTPS 服务器"
+
+msgid "ECH Domain"
+msgstr "ECH 域名"
+
+msgid "ECH configuration domain"
+msgstr "ECH 配置域名"
+
+msgid "Service Logs"
+msgstr "服务日志"
+
+msgid "Refresh Logs"
+msgstr "刷新日志"
+
+msgid "Clear"
+msgstr "清除"
+
+msgid "Auto refresh (3s)"
+msgstr "自动刷新 (3秒)"
+
+msgid "No logs available"
+msgstr "暂无日志"
+
+msgid "Failed to read logs: "
+msgstr "读取日志失败: "
+
+msgid "Transparent Proxy"
+msgstr "透明代理"
+
+msgid "Enable Transparent Proxy"
+msgstr "启用透明代理"
+
+msgid "Automatically redirect LAN traffic through proxy"
+msgstr "自动将局域网流量重定向到代理"
+
+msgid "TPROXY Port"
+msgstr "TPROXY 端口"
+
+msgid "Local port for transparent proxy"
+msgstr "透明代理本地端口"

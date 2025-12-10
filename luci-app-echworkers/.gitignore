@@ -1,0 +1,7 @@
+*.o
+*.so
+*.a
+*.ipk
+*.swp
+*~
+.DS_Store

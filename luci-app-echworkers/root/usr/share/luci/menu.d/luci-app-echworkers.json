@@ -1,0 +1,14 @@
+{
+	"admin/services/echworkers": {
+		"title": "ECH Workers",
+		"order": 60,
+		"action": {
+			"type": "view",
+			"path": "echworkers/echworkers"
+		},
+		"depends": {
+			"acl": [ "luci-app-echworkers" ],
+			"uci": { "echworkers": true }
+		}
+	}
+}
