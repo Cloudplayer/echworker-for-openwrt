@@ -70,7 +70,7 @@ ech-workers \
 
 ## 上游项目
 
-- [ntbowen/ech-wk](https://github.com/ntbowen/ech-wk)
+- [byJoey/ech-wk](https://github.com/byJoey/ech-wk)
 
 ## 许可证
 
