@@ -1,35 +1,68 @@
 #!/bin/sh
 # ECH Workers 服务控制脚本
 # 用于 LuCI 界面控制服务启停
+#
+# 控制逻辑：
+# - enabled=0: 停止所有（ech-workers、dns2socks、nftables、dnsmasq 配置）
+# - enabled=1, transparent=0: 只保留 ech-workers（SOCKS5 代理），清理透明代理相关
+# - enabled=1, transparent=1: 启动所有
 
 ACTION="$1"
 
+# 清理透明代理相关配置（nftables、dns2socks、dnsmasq GFW 配置）
+cleanup_transparent() {
+    # 清理 nftables 规则
+    nft delete table inet echworkers 2>/dev/null
+    # 停止 dns2socks
+    killall -9 dns2socks 2>/dev/null
+    # 清理 dnsmasq GFW 配置
+    sed -i '/# ECH-Workers GFW DNS/,$d' /etc/dnsmasq.conf
+    # 同步重启 dnsmasq 恢复正常 DNS
+    /etc/init.d/dnsmasq restart >/dev/null 2>&1
+}
+
 case "$ACTION" in
     restart)
-        # 停止 procd 管理的服务
-        ubus call service delete '{"name":"echworkers"}' 2>/dev/null
-        # 杀死残留进程
-        killall -9 ech-workers dns2socks 2>/dev/null
-        # 清理 dnsmasq 配置
-        sed -i '/# ECH-Workers GFW DNS/,$d' /etc/dnsmasq.conf
-        sleep 1
-        # 后台启动服务
-        /etc/init.d/echworkers start &
-        echo "Service restarting..."
+        # 读取配置
+        enabled=$(uci -q get echworkers.config.enabled)
+        transparent=$(uci -q get echworkers.config.transparent)
+        
+        if [ "$enabled" != "1" ]; then
+            # 服务禁用：停止所有
+            ubus call service delete '{"name":"echworkers"}' 2>/dev/null
+            killall -9 ech-workers dns2socks 2>/dev/null
+            cleanup_transparent
+            echo "Service stopped (disabled)"
+        elif [ "$transparent" != "1" ]; then
+            # 服务启用但透明代理关闭：只保留 ech-workers
+            # 先清理透明代理相关
+            cleanup_transparent
+            # 重启 ech-workers（不启动透明代理）
+            ubus call service delete '{"name":"echworkers"}' 2>/dev/null
+            killall -9 ech-workers 2>/dev/null
+            sleep 1
+            /etc/init.d/echworkers start &
+            echo "Service restarting (SOCKS5 only)"
+        else
+            # 服务启用且透明代理开启：完整重启
+            ubus call service delete '{"name":"echworkers"}' 2>/dev/null
+            killall -9 ech-workers dns2socks 2>/dev/null
+            sed -i '/# ECH-Workers GFW DNS/,$d' /etc/dnsmasq.conf
+            nft delete table inet echworkers 2>/dev/null
+            sleep 1
+            /etc/init.d/echworkers start &
+            echo "Service restarting (full)"
+        fi
         ;;
     stop)
-        # 停止 procd 管理的服务
+        # 停止所有服务和清理所有配置
         ubus call service delete '{"name":"echworkers"}' 2>/dev/null
-        # 杀死残留进程
         killall -9 ech-workers dns2socks 2>/dev/null
-        # 清理 dnsmasq 配置
-        sed -i '/# ECH-Workers GFW DNS/,$d' /etc/dnsmasq.conf
-        # 重启 dnsmasq 恢复正常 DNS
-        ( sleep 1; /etc/init.d/dnsmasq restart ) &
+        cleanup_transparent
         echo "Service stopped"
         ;;
     start)
-        # 后台启动服务
+        # 后台启动服务（根据配置决定是否启动透明代理）
         /etc/init.d/echworkers start &
         echo "Service starting..."
         ;;
